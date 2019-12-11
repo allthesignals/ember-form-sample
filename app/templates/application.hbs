@@ -11,14 +11,14 @@
       <div class="card-body">
         <div class="form-row">
           <div class="form-group col-md-12">
-            <Form::item::input @scope={{f.scope}} @for="input" @label="Top Level input" disabled={{@readOnly}} />
+            <ProjectSpecificInputs::input @scope={{f.scope}} @for="input" @label="Top Level input" disabled={{@readOnly}} />
           </div>
         </div>
 
         <f.scope @for="scope1" as |s|>
           <div class="form-row">
             <div class="form-group col-md-6">
-              <Form::item::input @scope={{s.scope}} @for="input" @label="Scope 1 input" disabled={{@readOnly}} />
+              <ProjectSpecificInputs::input @scope={{s.scope}} @for="input" @label="Scope 1 input" disabled={{@readOnly}} />
             </div>
             <div class="form-group col-md-6">
               {{#let s.scope as |scope|}}
@@ -46,13 +46,13 @@
 
           <div class="form-row">
             <div class="form-group col-md-12">
-              <Form::item::textarea @scope={{s.scope}} @for="textarea" @label="Scope 1 textarea"/>
+              <ProjectSpecificInputs::textarea @scope={{s.scope}} @for="textarea" @label="Scope 1 textarea"/>
             </div>
           </div>
 
           <div class="form-row">
             <div class="form-group col-md-12">
-              <Form::item::checkbox @scope={{s.scope}} @for="checkbox" @label="Scope 1 checkbox"/>
+              <ProjectSpecificInputs::checkbox @scope={{s.scope}} @for="checkbox" @label="Scope 1 checkbox"/>
             </div>
           </div>
         </f.scope>
@@ -64,7 +64,7 @@
                   <s.scope @for="really" as |s|>
                     <s.scope @for="deep" as |s|>
                       <s.scope @for="scope" as |s|>
-                        <Form::item::input @scope={{s.scope}} @for="input" @label="deeeeep scope"
+                        <ProjectSpecificInputs::input @scope={{s.scope}} @for="input" @label="deeeeep scope"
                                            disabled={{@readOnly}} />
                       </s.scope>
                     </s.scope>

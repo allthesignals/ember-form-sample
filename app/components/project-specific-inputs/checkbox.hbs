@@ -1,4 +1,4 @@
-<Form::item::field @scope={{@scope}} @for={{@for}} as |f|>
+<ProjectSpecificInputs::field @scope={{@scope}} @for={{@for}} as |f|>
   <div class="form-check {{if f.messages.error "form-field-error"}}">
     <Input @type="checkbox" class="form-check-input" @id={{f.id}} @checked={{f.data}} name={{f.name}} ...attributes/>
     <label for={{f.id}}>
@@ -9,4 +9,4 @@
       {{/if}}
     </label>
   </div>
-</Form::item::field>
+</ProjectSpecificInputs::field>

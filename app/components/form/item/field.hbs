@@ -1,0 +1,10 @@
+{{#let @scope as |scope|}}
+  <scope @for={{@for}} as |s|>
+    {{yield s}}
+    {{#let s.messages.error.firstObject as |e|}}
+      <div class="invalid-feedback">
+        {{e.message}}
+      </div>
+    {{/let}}
+  </scope>
+{{/let}}

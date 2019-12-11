@@ -1,0 +1,10 @@
+<form {{on "submit" (fn this.onSubmit)}} ...attributes>
+  {{
+  yield (
+            hash
+            messages=this.messages
+            data=@data
+            scope=(component "form/-scope" onChange=(fn this.onChange) data=@data messages=this.messages)
+        )
+  }}
+</form>

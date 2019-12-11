@@ -1,0 +1,7 @@
+<Form::item::field @scope={{@scope}} @for={{@for}} as |f|>
+  <div class="{{if f.messages.error "form-field-error"}}">
+    <label for={{f.id}}>{{@label}} (Path: {{join "." f.path}})</label>
+    <Textarea @id={{f.id}} @cols={{or @cols 80}} @rows={{or @rows 6}} @value={{f.data}} name={{f.name}}
+              class="form-control" ...attributes/>
+  </div>
+</Form::item::field>

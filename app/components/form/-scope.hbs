@@ -1,0 +1,13 @@
+{{yield (
+            hash
+            id=this.id
+            data=this.data
+            messages=this.messages
+            onChange=(fn this.onChange)
+            for=@for
+            update=this.update
+            path=this.path
+            name=this.name
+            scope=(component "form/-scope" onChange=(fn this.onChange) data=this.data messages=this.messages path=this.path)
+        )
+}}

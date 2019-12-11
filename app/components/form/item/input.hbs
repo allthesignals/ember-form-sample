@@ -1,0 +1,12 @@
+<Form::item::field @scope={{@scope}} @for={{@for}} as |f|>
+  <div class="{{if f.messages.error "form-field-error"}}">
+    <label for={{f.id}}>{{@label}} (Path: {{join "." f.path}})</label>
+    <Input @id={{f.id}} @type={{or @type "text"}} @value={{f.data}} name={{f.name}}
+           class="form-control" ...attributes/>
+    {{# if @hint}}
+      <small class="form-text text-muted">
+        {{@hint}}
+      </small>
+    {{/if}}
+  </div>
+</Form::item::field>

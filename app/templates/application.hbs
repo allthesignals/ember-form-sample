@@ -1,5 +1,83 @@
-{{!-- The following component displays Ember's default welcome message. --}}
-<WelcomePage />
-{{!-- Feel free to remove this! --}}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-{{outlet}}
+<div class="p-4">
+  <Form @onSubmit={{fn this.onSubmit this.model}} @onChange={{fn this.onChange}} @data={{this.model}}
+        @messages={{this.messages}} as |f|>
+    <div class="card">
+      <div class="card-header">
+        Sample
+      </div>
+      <div class="card-body">
+        <div class="form-row">
+          <div class="form-group col-md-12">
+            <Form::item::input @scope={{f.scope}} @for="input" @label="Top Level input" disabled={{@readOnly}} />
+          </div>
+        </div>
+
+        <f.scope @for="scope1" as |s|>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <Form::item::input @scope={{s.scope}} @for="input" @label="Scope 1 input" disabled={{@readOnly}} />
+            </div>
+            <div class="form-group col-md-6">
+              {{#let s.scope as |scope|}}
+                <scope @for="inlineInput" as |f|>
+                  <div class="{{if f.messages.error "form-field-error"}}">
+                    <label for={{f.id}}>Scope 1 inlineInput (Path: {{join "." f.path}})</label>
+                    <Input @id={{f.id}} @type={{or @type "text"}} @value={{f.data}} name={{f.name}}
+                           class="form-control"/>
+                    {{# if @hint}}
+                      <small class="form-text text-muted">
+                        {{@hint}}
+                      </small>
+                    {{/if}}
+                  </div>
+
+                  {{#let s.messages.error.firstObject as |e|}}
+                    <div class="invalid-feedback">
+                      {{e.message}}
+                    </div>
+                  {{/let}}
+                </scope>
+              {{/let}}
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-12">
+              <Form::item::textarea @scope={{s.scope}} @for="textarea" @label="Scope 1 textarea"/>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-12">
+              <Form::item::checkbox @scope={{s.scope}} @for="checkbox" @label="Scope 1 checkbox"/>
+            </div>
+          </div>
+        </f.scope>
+        <div class="form-row">
+          <div class="form-group col-md-12">
+            <f.scope @for="a" as |s|>
+              <s.scope @for="really" as |s|>
+                <s.scope @for="really" as |s|>
+                  <s.scope @for="really" as |s|>
+                    <s.scope @for="deep" as |s|>
+                      <s.scope @for="scope" as |s|>
+                        <Form::item::input @scope={{s.scope}} @for="input" @label="deeeeep scope"
+                                           disabled={{@readOnly}} />
+                      </s.scope>
+                    </s.scope>
+                  </s.scope>
+                </s.scope>
+              </s.scope>
+            </f.scope>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer text-right">
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+    </div>
+  </Form>
+</div>
